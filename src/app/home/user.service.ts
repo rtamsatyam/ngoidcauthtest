@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import { OidcSecurityService} from 'angular-auth-oidc-client';
+import {AuthInterceptor, OidcSecurityService} from 'angular-auth-oidc-client';
 
 
 @Injectable({providedIn: 'root'})
@@ -22,4 +22,7 @@ export class UserService {
     return this.http.get('/api/users/me');
   }
 
+  getAbout(): Observable<string | any> {
+    return this.http.get('/api/users/about');
+  }
 }

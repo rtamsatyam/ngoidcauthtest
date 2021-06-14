@@ -1,6 +1,6 @@
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { APP_INITIALIZER, NgModule } from '@angular/core';
-import {AuthInterceptor, AuthModule, LogLevel, OidcConfigService} from 'angular-auth-oidc-client';
-import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import { AuthInterceptor, AuthModule, LogLevel, OidcConfigService } from 'angular-auth-oidc-client';
 
 export function configureAuth(oidcConfigService: OidcConfigService) {
   return () =>
@@ -19,7 +19,7 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
 }
 
 @NgModule({
-  imports: [AuthModule.forRoot()],
+  imports: [AuthModule.forRoot(), HttpClientModule],
   providers: [
     OidcConfigService,
     {
@@ -32,6 +32,6 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
       provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true
     }
   ],
-  exports: [AuthModule],
+  exports: [AuthModule, HttpClientModule],
 })
 export class AuthConfigModule {}

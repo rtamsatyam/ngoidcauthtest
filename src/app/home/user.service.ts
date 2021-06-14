@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {AuthInterceptor, OidcSecurityService} from 'angular-auth-oidc-client';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
+import { Observable } from 'rxjs';
 
 
 @Injectable({providedIn: 'root'})
@@ -15,14 +15,14 @@ export class UserService {
     const httpOptions = {
       responseType: 'text' as const
     };
-    return this.http.get('/api/users/jwt', httpOptions);
+    return this.http.get('http://localhost:8080/api/users/jwt', httpOptions);
   }
 
   getUser(): Observable<string | any> {
-    return this.http.get('/api/users/me');
+    return this.http.get('http://localhost:8080/api/users/me');
   }
 
   getAbout(): Observable<string | any> {
-    return this.http.get('/api/users/about');
+    return this.http.get('http://localhost:8080/api/users/about');
   }
 }
